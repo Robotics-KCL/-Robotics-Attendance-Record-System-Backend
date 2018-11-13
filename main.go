@@ -1,10 +1,11 @@
 package main
 
+// for record every entry in the database
 type Member struct {
 	Name             string
 	Gender           string
 	Course           string
-	faculty          string
+	faculty          sFtring
 	AttendedWorkshop int16
 	Data             int16
 }
