@@ -1,5 +1,11 @@
 package main
 
+import (
+	"encoding/json"
+	"fmt"
+	"log"
+)
+
 // for record every entry in the database
 type Member struct {
 	Name             string
