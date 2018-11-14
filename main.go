@@ -9,6 +9,8 @@ import (
 	"os"
 )
 
+var dataHandler []byte
+
 // for record every entry in the database
 type Member struct {
 	Name             string
@@ -54,6 +56,8 @@ func WriteinJson(newMember string) {
 	mem := []byte(newMember)
 
 	existingData = append(existingData, mem...)
+
+	dataHandler = existingData
 
 	// newJson, err := json.Marshal(mem)
 	// if err != nil {
