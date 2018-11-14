@@ -1,10 +1,10 @@
 package main
 
 import (
-	"encoding/json"
+	//"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"log"
+	//"log"
 	"os"
 )
 
@@ -19,12 +19,13 @@ type Member struct {
 }
 
 func main() {
-	fmt.Println("Starting working")
-	Writein(Member{Name: "Alex Bonin", Gender: "Male", Course: "Electonics", Faculty: "NMS", AttendedWorkshop: 10, Date: 13112018})
+	fmt.Printf("Content-type: text/plain\n\n")
+
+	WriteinJson()
 
 }
 
-func Writein(newMember Member) {
+func WriteinJson(newMember string) {
 
 	/*
 	 * code for opening a json file from storage
@@ -40,21 +41,23 @@ func Writein(newMember Member) {
 	//read all data in the json file through ioutil
 	existingData, _ := ioutil.ReadAll(jsonFile)
 
-	var mem []Member
+	// var mem []Member
 
-	if err := json.Unmarshal([]byte(existingData), &mem); err != nil {
-		log.Println(err)
-	}
+	// if err := json.Unmarshal([]byte(existingData), &mem); err != nil {
+	// 	log.Println(err)
+	//
 
-	mem = append(mem, newMember)
+	mem := []byte(newMember)
 
-	newJson, err := json.Marshal(mem)
-	if err != nil {
-		log.Println(err)
-	}
+	existingData = append(existingData, mem...)
 
-	fmt.Println(string(newJson))
+	// newJson, err := json.Marshal(mem)
+	// if err != nil {
+	// 	log.Println(err)
+	// }
 
-	ioutil.WriteFile("members.json", newJson, 0644)
+	// fmt.Println(string(newJson))
+
+	ioutil.WriteFile("members.json", existingData, 0644)
 
 }
