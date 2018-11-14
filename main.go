@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	//"log"
+	"bufio"
 	"os"
 )
 
@@ -21,7 +22,10 @@ type Member struct {
 func main() {
 	fmt.Printf("Content-type: text/plain\n\n")
 
-	WriteinJson()
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Print("Enter text: ")
+	text, _ := reader.ReadString('\n')
+	WriteinJson(text)
 
 }
 
